@@ -3,7 +3,7 @@ import { docs, auth } from '@googleapis/docs';
 let authClient = new auth.OAuth2({
   clientId: process.env.GOOGLE_CLIENT_ID,
   clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-  redirectUri: process.env.GOOGLE_REDIRECT_URI
+  redirectUri: process.env.GOOGLE_REDIRECT_URI,
 });
 
 let docClient = docs({
@@ -17,7 +17,8 @@ let docClient = docs({
 export default async function handler({ query }, res) {
   authClient.setCredentials({
     access_token: 'My Nuts',
-    refresh_token: process.env.GOOGLE_REFRESH_TOKEN
+    refresh_token: process.env.GOOGLE_REFRESH_TOKEN,
+    scope: 'https://www.googleapis.com/auth/documents'
   });
 
   docClient.context._options.auth = authClient;
