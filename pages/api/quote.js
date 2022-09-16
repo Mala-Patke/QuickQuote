@@ -16,7 +16,7 @@ let docClient = docs({
  */
 export default async function handler({ query }, res) {
   authClient.setCredentials({
-    access_token: process.env.GOOGLE_ACCESS_TOKEN,
+    access_token: 'My Nuts',
     refresh_token: process.env.GOOGLE_REFRESH_TOKEN
   });
 
@@ -28,8 +28,8 @@ export default async function handler({ query }, res) {
       requests: [{
           insertText: {
             text: '\n' + query.quote,
-            location: {
-              index: 1
+            endOfSegmentLocation: {
+              segmentId: ''
             }
           }
         }]
