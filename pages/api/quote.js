@@ -23,14 +23,14 @@ export default async function handler({ query }, res) {
   docClient.context._options.auth = authClient;
 
   let result = await docClient.documents.batchUpdate({
-    documentId: '1pfXWYqdpB7bZspDrKZZpY8DY4zqV49CEdhlQ6NTWSM0',
+    documentId: process.env.QUOTEBOOK_DOCUMENT_ID,
     requestBody: {
       requests: [{
           insertText: {
             text: '\n' + query.quote,
             endOfSegmentLocation: {
               segmentId: ''
-            }
+            },
           }
         }]
     }
