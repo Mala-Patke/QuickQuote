@@ -23,17 +23,54 @@ export default async function handler({ query }, res) {
 
   docClient.context._options.auth = authClient;
 
+  //Object model moment
   let result = await docClient.documents.batchUpdate({
     documentId: process.env.QUOTEBOOK_DOCUMENT_ID,
     requestBody: {
-      requests: [{
+      requests: [
+/*        {
+          updateTextStyle: {
+            textStyle: {
+              foregroundColor: {
+                color: {
+                  rgbColor: {
+                    red: 255,
+                    green: 255,
+                    blue: 0
+                  }
+                }
+              }
+            }, range: {
+              segmentId: ''
+            }
+          }
+        },*/
+        {
           insertText: {
             text: '\n' + query.quote,
             endOfSegmentLocation: {
               segmentId: ''
             },
           }
-        }]
+        },
+/*        {
+          updateTextStyle: {
+            textStyle: {
+              foregroundColor: {
+                color: {
+                  rgbColor: {
+                    red: 0,
+                    green: 0,
+                    blue: 0
+                  }
+                }
+              }
+            }, range: {
+              segmentId: ''
+            }
+          }
+        }*/
+      ]
     }
   });
 
