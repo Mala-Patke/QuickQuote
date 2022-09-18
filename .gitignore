@@ -20,6 +20,7 @@
 *.pem
 *.crx
 package-lock*
+*zip
 
 # debug
 npm-debug.log*
